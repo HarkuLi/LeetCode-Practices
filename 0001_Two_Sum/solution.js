@@ -11,18 +11,19 @@ var twoSum = function(nums, target) {
     /**
      * Number to index map.
      *
-     * @type {Object.<number, number>}
+     * @type {Map<number, number>}
      */
-    let indexMap = {};
+    const indexMap = new Map();
 
-    for (const [index, num] of nums.entries()) {
-        let expectedNum = target - num;
+    for (let index = 0; index < nums.length; ++index) {
+        const num = nums[index];
+        const expectedNum = target - num;
 
-        if (expectedNum in indexMap) {
-            return [indexMap[expectedNum], index];
+        if (indexMap.has(expectedNum)) {
+            return [indexMap.get(expectedNum), index];
         }
 
-        indexMap[num] = index;
+        indexMap.set(num, index);
     }
 
     return [];
